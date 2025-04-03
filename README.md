@@ -8,7 +8,7 @@ CheapMatting is an efficient image matting network built on our ATLDAS NAS metho
 
 - **Real-Time Performance:** Achieves 1080p image matting in real time at 26 FPS on an NVIDIA 2080Ti.
 - **Low Memory Consumption:** Requires only 2 GiB of GPU memory.
-- **High Accuracy:** Demonstrates an SAD error of 33 on the Adobe 1K dataset.
+- **High Accuracy:** Demonstrates an SAD error of 26 on the Adobe 1K dataset.
 - **Real-World Ready:** We provide a checkpoint (rwp.ckpt) optimized for real-world applications.
 
 ## Background
@@ -33,7 +33,7 @@ Flops denotes the floating point computations required for inferring a 1024 × 1
 
 - **Hardware:** NVIDIA 2080Ti (or equivalent) is recommended.
 - **Dependencies:** Ensure you have the required Python libraries and CUDA properly installed.
-- **Checkpoint:** Download the provided `adobe1k.ckpt` for real-world scenarios.
+- **Checkpoint:** Download the provided `rwp.ckpt` for real-world scenarios.
 
 ### Example Code
 
