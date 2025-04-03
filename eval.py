@@ -6,24 +6,25 @@ import torch
 import model
 
 # Define paths for trimap, merged images, and output predictions
-p1 = './trimaps/'
-p2 = './merged/'
+p1 = './trimap/'
+p2 = './original/'
 p3a = './pred/'
 os.makedirs(p3a, exist_ok=True)
 
 if __name__ == '__main__':
     # Initialize and load the CheapMatting model
     segmodel = model.CheapMatting()
-    segmodel.load_state_dict(torch.load('./adobe1k.ckpt', map_location='cpu')['model'])
+    segmodel.load_state_dict(torch.load('./rwp.ckpt', map_location='cpu')['model'])
     segmodel = segmodel.cuda()
     segmodel.eval()
 
     # Process each image in the trimaps directory
     for idx, file in enumerate(os.listdir(p1)):
+        print(idx)
         rawimg_path = p2 + file
         trimap_path = p1 + file
 
-        rawimg = cv2.imread(rawimg_path)
+        rawimg = cv2.imread(rawimg_path[:-3]+'jpg')
         trimap = cv2.imread(trimap_path, cv2.IMREAD_GRAYSCALE)
         trimap_nonp = trimap.copy()
         h, w, c = rawimg.shape
