@@ -316,19 +316,19 @@ class CheapMatting(nn.Module):
 if __name__ == '__main__':
     torch.backends.cudnn.benchmark = True
     import time
-    model=CheapMatting().cuda()
+    model=CheapMatting().cpu()
     model.eval()
-    model=torch.compile(model)
-    x=torch.randn(8,6,1920,1088).cuda()
-    with torch.amp.autocast(device_type="cuda"):
-        with torch.no_grad():
+    # model=torch.compile(model)
+    x=torch.randn(1,6,2048,2048).cpu()
+    # with torch.amp.autocast(device_type="cpu"):
+    with torch.no_grad():
+        f1 = model(x)
+        # for i in range(2):
+        #     f1= model(x)
+        # torch.cuda.synchronize()
+        a = time.time()
+        for i in range(2):
             f1 = model(x)
-            for i in range(5):
-                f1= model(x)
-            torch.cuda.synchronize()
-            a = time.time()
-            for i in range(15):
-                f1 = model(x)
-            torch.cuda.synchronize()
-            print(120/ (time.time() - a))
+        # torch.cuda.synchronize()
+        print( (time.time() - a)/2)
 

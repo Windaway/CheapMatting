@@ -9,11 +9,23 @@ CheapMatting is an efficient image matting network built on our ATLDAS NAS metho
 - **Real-Time Performance:** Achieves 1080p image matting in real time at 26 FPS on an NVIDIA 2080Ti.
 - **Low Memory Consumption:** Requires only 2 GiB of GPU memory.
 - **High Accuracy:** Demonstrates an SAD error of 33 on the Adobe 1K dataset.
-- **Real-World Ready:** We will provide a checkpoint (ckpt) optimized for real-world applications.
+- **Real-World Ready:** We provide a checkpoint (rwp.ckpt) optimized for real-world applications.
 
 ## Background
 
 CheapMatting is constructed based on our ATLDAS (Automatic Topology Learning for Differentiable Architecture Search) method. By automatically learning optimal network topologies, we balance efficiency and accuracy, making it suitable for practical image matting tasks.
+
+## Performance vs SOTA Methods
+
+|  Model Name  | Param |   Flops   | Latency |  MSE  |  SAD  | Grad  | Conn  |
+|:------------:|:-----:|:---------:|:-------:|:-----:|:-----:|:-----:|:-----:|
+|   IndexNet   | 8.2M  | 116Gflops |  7.7s   | 13.00 | 45.80 | 25.90 | 43.70 |
+|  FBAMatting  | 34.8M | 686Gflops |  15.4s  | 5.40  | 26.40 | 10.60 | 21.50 |
+| MatteFormer  | 44.9M | 233Gflops | 14.37s  | 4.00  | 23.80 | 8.70  | 18.90 |
+| CheapMatting | 6.0M  | 33Gflops  |  3.1s   | 5.03  | 26.37 | 11.05 | 22.05 |
+
+
+Flops denotes the floating point computations required for inferring a 1024 × 1024 image. Param denotes the network parameter number. Latency refers to the latency  measured on an R9 3900X CPU for inferring a 2048 × 2048 image.
 
 ## Usage
 
